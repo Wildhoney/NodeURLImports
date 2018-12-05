@@ -1,0 +1,8 @@
+- name: format
+  tasks: 
+    - prettier --write 'src/*.js'
+
+- name: test
+  tasks:
+    # - ava
+    - - eslint 'src/*.js'
