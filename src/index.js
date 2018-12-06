@@ -1,14 +1,15 @@
 const Module = require('module');
 const require_ = Module.prototype.require;
 
-const isRemote = name => name.startsWith('http://') || name.startsWith('https://') || name.startsWith('://');
+export const isRemote = name => name.startsWith('http://') || name.startsWith('https://') || name.startsWith('://');
+
+export const transformImportUrl = name => {
+    const matches = name.match(/\/(?<name>[^/]+?)@(?<version>.+?)(?<path>\/.+)$/i);
+    return matches ? `${matches.groups.name}${matches.groups.path}` : name;
+};
 
 Module.prototype.require = function(name, ...rest) {
-    if (isRemote(name)) {
-        const matches = name.match(/\/(?<name>[^/]+?)@(?<version>.+?)(?<path>\/.+)$/i);
-        const newName = matches && `${matches.groups.name}${matches.groups.path}`;
-        return require_.apply(this, [newName || name, ...rest]);
-    }
-
-    return require_.apply(this, [name, ...rest]);
+    return isRemote(name)
+        ? require_.apply(this, [transformImportUrl(name), ...rest])
+        : require_.apply(this, [name, ...rest]);
 };
