@@ -18,8 +18,8 @@
 
 As only `require` statements are catchable, all `import` statements first need to be transformed into their `require` equivalents &ndash; using something like [`Babel`](https://github.com/babel/babel).
 
-```bash
-node -r @babel/register index.js
+```console
+foo@bar:~$ node -r @babel/register index.js
 ```
 
 Using the following `.babelrc` configuration:
@@ -33,8 +33,8 @@ Using the following `.babelrc` configuration:
 
 With the `@babel/plugin-transform-modules-commonjs` dependency loaded Babel only transform the `import` statements. After that you can include the `node-url-imports` module that'll monkey-patch the `require` function and transform all URL imports into their local dependency equivalents.
 
-```bash
-node -r @babel/register -r node-url-imports index.js
+```console
+foo@bar:~$ node -r @babel/register -r node-url-imports index.js
 ```
 
 Afterwards you can include other transpilers such as [`esm`](https://github.com/standard-things/esm).
