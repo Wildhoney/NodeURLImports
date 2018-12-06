@@ -20,4 +20,5 @@ test('It should be able to parse URL import declarations;', t => {
     t.is(transformImportUrl('https://cdn.jsdelivr.net/npm/promisesque@0.2.0/src/index.js'), 'promisesque/src/index.js');
     t.is(transformImportUrl('https://unpkg.com/promisesque@0.2.0/src/index.js'), 'promisesque/src/index.js');
     t.is(transformImportUrl('https://unpkg.com/promisesque-abc@0.2.0/src/index.js'), 'promisesque-abc/src/index.js');
+    t.is(transformImportUrl('promisesque'), 'promisesque');
 });
