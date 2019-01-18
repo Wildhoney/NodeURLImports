@@ -1,6 +1,6 @@
 {
   "name": "node-url-imports",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Transform browser URL imports into Node compatible import/require statements using local dependencies.",
   "main": "src/index.js",
   "repository": "git@github.com:Wildhoney/NodeURLImports.git",
